@@ -2,12 +2,14 @@ package com.bw.fivemonth1.net;
 
 import com.bw.fivemonth1.bean.LoginBean;
 import com.bw.fivemonth1.bean.RegisterBean;
+import com.bw.fivemonth1.bean.ShopBean;
 
 import java.util.Map;
 
 import io.reactivex.Observable;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -28,5 +30,9 @@ public interface ApiService {
     @POST("user/v1/register")
     @FormUrlEncoded
     Observable<RegisterBean> registerUser(@FieldMap Map<String,String> param);
+
+    //请求购物车数据
+    @GET("order/verify/v1/findShoppingCart")
+    Observable<ShopBean> getShop();
 
 }

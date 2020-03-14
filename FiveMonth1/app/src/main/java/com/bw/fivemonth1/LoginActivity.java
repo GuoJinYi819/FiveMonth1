@@ -11,6 +11,7 @@ import com.bw.fivemonth1.base.BasePresenter;
 import com.bw.fivemonth1.bean.LoginBean;
 import com.bw.fivemonth1.mvp.login.ILoginContract;
 import com.bw.fivemonth1.mvp.login.LoginPresenterImpl;
+import com.bw.fivemonth1.net.SpUtil;
 
 import java.util.HashMap;
 
@@ -49,8 +50,8 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements I
                 String phone = editPhone.getText().toString().trim();
                 String pwd = editPwd.getText().toString().trim();
                 HashMap<String, String> hashMap = new HashMap<>();
-                hashMap.put( "phone",phone );
-                hashMap.put( "pwd",pwd );
+                hashMap.put( "phone","15621273708" );
+                hashMap.put( "pwd","gjy2000" );
                 presenter.loginUser( hashMap );
                 break;
             case R.id.btnRegister:
@@ -90,6 +91,13 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements I
         if (bean != null) {
             String message = bean.getMessage();
             if (message.contains( "登录成功" )) {
+                LoginBean.ResultBean result = bean.getResult();
+                int userId = result.getUserId();
+                String sessionId = result.getSessionId();
+                SpUtil instance = SpUtil.getInstance();
+                instance.setData( SpUtil.SP_USERID,userId );
+                instance.setData( SpUtil.SP_SESSIONID,sessionId);
+
                 Intent intent = new Intent( LoginActivity.this, HomePagerActivity.class );
                 startActivity( intent );
                 finish();

@@ -16,7 +16,7 @@ import com.bw.fivemonth1.base.BasePresenter;
 public class OrderFragment extends BaseFragment {
     @Override
     protected int initLayoutId() {
-        return R.layout.fragment_shop;
+        return R.layout.fragment_order;
     }
 
     @Override
@@ -38,4 +38,6 @@ public class OrderFragment extends BaseFragment {
     protected BasePresenter initPresenter() {
         return null;
     }
+
+
 }

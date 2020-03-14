@@ -1,8 +1,16 @@
 package com.bw.fivemonth1.net;
 
+import android.text.TextUtils;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -26,6 +34,25 @@ public class RetrofitUtil {
                 .connectTimeout( 5, TimeUnit.SECONDS )
                 .readTimeout( 5, TimeUnit.SECONDS )
                 .addInterceptor( new HttpLoggingInterceptor().setLevel( HttpLoggingInterceptor.Level.BODY ) )
+                .addInterceptor( new Interceptor() {
+                    @NotNull
+                    @Override
+                    public Response intercept(@NotNull Chain chain) throws IOException {
+                        Request request = chain.request();
+                        Request.Builder builder = request.newBuilder();
+                        SpUtil instance = SpUtil.getInstance();
+                        int userId = instance.getUserId( SpUtil.SP_USERID );
+                        if (userId!=0) {
+                            builder.addHeader( SpUtil.SP_USERID,userId+"" );
+                        }
+                        String sesstion = instance.getSesstion( SpUtil.SP_SESSIONID );
+                        if (!TextUtils.isEmpty( sesstion )) {
+                            builder.addHeader( SpUtil.SP_SESSIONID,sesstion );
+                        }
+                        Request newbuild = builder.build();
+                        return chain.proceed( newbuild );
+                    }
+                } )
                 .build();
         retrofit = new Retrofit.Builder()
                 .baseUrl( "http://mobile.bwstudent.com/small/" )

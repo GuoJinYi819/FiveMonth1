@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_marginBottom="20dp"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:layout_marginLeft="20dp"
+        android:id="@+id/checkBoxChild"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp">
+
+    </CheckBox>
+    <ImageView
+        android:id="@+id/ivPic"
+        android:src="@color/colorAccent"
+        android:layout_width="120dp"
+        android:layout_height="120dp">
+
+    </ImageView>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+        <TextView
+            android:id="@+id/tvCommodityName"
+            android:layout_width="match_parent"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:layout_height="0dp">
+
+        </TextView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp">
+            <TextView
+                android:id="@+id/tvPrice"
+                android:textColor="#ff00"
+                android:text="11111"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+           <com.bw.fivemonth1.customview.MyAdd
+               android:id="@+id/myadd"
+               android:layout_alignParentRight="true"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content">
+
+           </com.bw.fivemonth1.customview.MyAdd>
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>
