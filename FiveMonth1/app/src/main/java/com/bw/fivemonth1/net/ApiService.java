@@ -1,5 +1,6 @@
 package com.bw.fivemonth1.net;
 
+import com.bw.fivemonth1.bean.LoginBean;
 import com.bw.fivemonth1.bean.RegisterBean;
 
 import java.util.Map;
@@ -19,7 +20,9 @@ import retrofit2.http.POST;
 public interface ApiService {
 
     //登入
-    Observable loginUser(@FieldMap Map<String,String> param);
+    @POST("user/v1/login")
+    @FormUrlEncoded
+    Observable<LoginBean> loginUser(@FieldMap Map<String,String> param);
 
     //注册
     @POST("user/v1/register")

@@ -7,6 +7,9 @@ import android.widget.EditText;
 
 import com.bw.fivemonth1.base.BaseActivity;
 import com.bw.fivemonth1.base.BasePresenter;
+import com.bw.fivemonth1.bean.LoginBean;
+import com.bw.fivemonth1.mvp.login.ILoginContract;
+import com.bw.fivemonth1.mvp.login.LoginPresenterImpl;
 
 import java.util.HashMap;
 
@@ -16,7 +19,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements ILoginContract.ILoginView {
 
     @BindView(R.id.editPhone)
     EditText editPhone;
@@ -47,7 +50,7 @@ public class LoginActivity extends BaseActivity {
                 HashMap<String, String> hashMap = new HashMap<>();
                 hashMap.put( "phone",phone );
                 hashMap.put( "pwd",pwd );
-
+                presenter.loginUser( hashMap );
                 break;
             case R.id.btnRegister:
                 Intent intent = new Intent( LoginActivity.this, RegisterActivity.class );
@@ -77,8 +80,18 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override
-    protected BasePresenter initPresenter() {
-        return null;
+    protected LoginPresenterImpl initPresenter() {
+        return new LoginPresenterImpl();
+    }
+
+    @Override
+    public void onSuccess(LoginBean bean) {
+
+    }
+
+    @Override
+    public void onFailed(String error) {
+
     }
 
     @Override
