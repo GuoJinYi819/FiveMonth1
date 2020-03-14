@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.bw.fivemonth1.base.BaseActivity;
 import com.bw.fivemonth1.base.BasePresenter;
@@ -86,7 +87,16 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements I
 
     @Override
     public void onSuccess(LoginBean bean) {
-
+        if (bean != null) {
+            String message = bean.getMessage();
+            if (message.contains( "登录成功" )) {
+                Intent intent = new Intent( LoginActivity.this, HomePagerActivity.class );
+                startActivity( intent );
+                finish();
+            }else {
+                Toast.makeText( this, ""+message, Toast.LENGTH_SHORT ).show();
+            }
+        }
     }
 
     @Override
