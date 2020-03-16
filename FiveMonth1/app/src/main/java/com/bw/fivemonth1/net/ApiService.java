@@ -1,6 +1,7 @@
 package com.bw.fivemonth1.net;
 
 import com.bw.fivemonth1.bean.LoginBean;
+import com.bw.fivemonth1.bean.OrderBean;
 import com.bw.fivemonth1.bean.RegisterBean;
 import com.bw.fivemonth1.bean.ShopBean;
 
@@ -11,6 +12,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.QueryMap;
 
 /**
  * ClassName: FiveMonth1
@@ -34,5 +36,10 @@ public interface ApiService {
     //请求购物车数据
     @GET("order/verify/v1/findShoppingCart")
     Observable<ShopBean> getShop();
+
+    //请求订单业务
+    @GET("order/verify/v1/findOrderListByStatus")
+    Observable<OrderBean> getOrder(@QueryMap Map<String,String> param);
+
 
 }

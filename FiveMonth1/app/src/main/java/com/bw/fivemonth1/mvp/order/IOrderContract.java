@@ -1,8 +1,7 @@
-package com.bw.fivemonth1.mvp.shop;
+package com.bw.fivemonth1.mvp.order;
 
 import com.bw.fivemonth1.base.IBaseView;
-import com.bw.fivemonth1.bean.LoginBean;
-import com.bw.fivemonth1.bean.ShopBean;
+import com.bw.fivemonth1.bean.OrderBean;
 
 import java.util.Map;
 
@@ -13,19 +12,19 @@ import java.util.Map;
  * @version 创建时间：2020/3/14 15:07
  * @Description: 用途：完成特定功能
  */
-public interface IShopContract {
-    interface IShopView extends IBaseView{
-        void onSuccess(ShopBean bean);
+public interface IOrderContract {
+    interface IOrderView extends IBaseView{
+        void onSuccess(OrderBean bean);
         void onFailed(String error);
     }
-    interface IShopModlue{
-        void getShop( ModuleCallBack moduleCallBack);
+    interface IOrderModlue{
+        void getOrder(Map<String,String> param,ModuleCallBack moduleCallBack);
         interface ModuleCallBack{
-            void onSuccess(ShopBean bean);
+            void onSuccess(OrderBean bean);
             void onFailed(String error);
         }
     }
-    interface IShopPresenter{
-        void getShop();
+    interface IOrderPresenter{
+        void getOrder(Map<String,String> param);
     }
 }

@@ -41,6 +41,7 @@ public class RetrofitUtil {
                         Request request = chain.request();
                         Request.Builder builder = request.newBuilder();
                         SpUtil instance = SpUtil.getInstance();
+
                         int userId = instance.getUserId( SpUtil.SP_USERID );
                         if (userId!=0) {
                             builder.addHeader( SpUtil.SP_USERID,userId+"" );
@@ -50,6 +51,7 @@ public class RetrofitUtil {
                             builder.addHeader( SpUtil.SP_SESSIONID,sesstion );
                         }
                         Request newbuild = builder.build();
+
                         return chain.proceed( newbuild );
                     }
                 } )

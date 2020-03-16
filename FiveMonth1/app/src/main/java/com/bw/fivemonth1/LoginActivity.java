@@ -53,6 +53,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements I
                 hashMap.put( "phone","15621273708" );
                 hashMap.put( "pwd","gjy2000" );
                 presenter.loginUser( hashMap );
+
                 break;
             case R.id.btnRegister:
                 Intent intent = new Intent( LoginActivity.this, RegisterActivity.class );
@@ -94,6 +95,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements I
                 LoginBean.ResultBean result = bean.getResult();
                 int userId = result.getUserId();
                 String sessionId = result.getSessionId();
+
                 SpUtil instance = SpUtil.getInstance();
                 instance.setData( SpUtil.SP_USERID,userId );
                 instance.setData( SpUtil.SP_SESSIONID,sessionId);
@@ -101,6 +103,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements I
                 Intent intent = new Intent( LoginActivity.this, HomePagerActivity.class );
                 startActivity( intent );
                 finish();
+
             }else {
                 Toast.makeText( this, ""+message, Toast.LENGTH_SHORT ).show();
             }
