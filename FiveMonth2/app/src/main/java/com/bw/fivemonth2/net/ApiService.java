@@ -1,6 +1,7 @@
 package com.bw.fivemonth2.net;
 
 import com.bw.fivemonth2.bean.LoginBean;
+import com.bw.fivemonth2.bean.RegisterBean;
 
 import java.util.Map;
 
@@ -21,4 +22,7 @@ public interface ApiService {
     @FormUrlEncoded
     Observable<LoginBean> loginUser(@FieldMap Map<String,String> param);
 
+    @POST("user/v1/register")
+    @FormUrlEncoded
+    Observable<RegisterBean> registerUser(@FieldMap Map<String,String> param);
 }

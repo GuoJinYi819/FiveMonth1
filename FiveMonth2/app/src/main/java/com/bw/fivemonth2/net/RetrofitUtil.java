@@ -43,4 +43,8 @@ public class RetrofitUtil {
         }
         return instance;
     }
+    public ApiService createService(){
+        ApiService apiService = retrofit.create( ApiService.class );
+        return apiService;
+    }
 }
